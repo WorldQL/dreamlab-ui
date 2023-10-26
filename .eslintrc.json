@@ -2,8 +2,9 @@
   "root": true,
   "extends": [
     "@luludev/eslint-config/common",
-    "@luludev/eslint-config/node",
+    "@luludev/eslint-config/browser",
     "@luludev/eslint-config/typescript",
+    "@luludev/eslint-config/react",
     "@luludev/eslint-config/prettier"
   ],
   "parserOptions": {
