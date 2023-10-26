@@ -1,0 +1,64 @@
+{
+  "name": "@dreamlab.gg/ui",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./package.json": {
+      "import": "./package.json"
+    },
+    "./modules.json": {
+      "import": "./dist/modules.json"
+    },
+    "./dist/modules.json": {
+      "import": "./dist/modules.json"
+    },
+    "./dist/*": {
+      "import": {
+        "types": "./dist/*.d.ts",
+        "default": "./dist/*.js"
+      }
+    },
+    "./*": {
+      "import": {
+        "types": "./dist/*.d.ts",
+        "default": "./dist/*.js"
+      }
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "npm run build -- --watch",
+    "check": "tsc --noEmit --skipLibCheck",
+    "lint": "prettier --check . && eslint src --ext ts",
+    "format": "prettier --write . && eslint src --ext ts --fix",
+    "fmt": "npm run format",
+    "test": "npm run check && npm run lint",
+    "prepack": "npm run test && npm run build",
+    "postversion": "git push --follow-tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WorldQL/dreamlab-ui.git"
+  },
+  "devDependencies": {
+    "@luludev/eslint-config": "^0.5.0",
+    "eslint": "^8.52.0",
+    "prettier": "^3.0.3",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {}
+}

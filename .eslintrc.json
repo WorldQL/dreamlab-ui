@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "extends": [
+    "@luludev/eslint-config/common",
+    "@luludev/eslint-config/node",
+    "@luludev/eslint-config/typescript",
+    "@luludev/eslint-config/prettier"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.eslint.json"
+  },
+  "rules": {
+    "unicorn/prefer-node-protocol": 0,
+    "no-restricted-globals": 0
+  },
+  "ignorePatterns": ["**/dist/*"]
+}
