@@ -54,11 +54,13 @@
     "url": "git+https://github.com/WorldQL/dreamlab-ui.git"
   },
   "devDependencies": {
+    "@dreamlab.gg/core": "^0.0.50",
     "@luludev/eslint-config": "^0.5.0",
+    "@types/react": "^18.2.32",
+    "@types/react-dom": "^18.2.14",
     "eslint": "^8.52.0",
     "prettier": "^3.0.3",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
-  },
-  "dependencies": {}
+  }
 }
