@@ -10,6 +10,9 @@
   "parserOptions": {
     "project": "./tsconfig.eslint.json"
   },
+  "settings": {
+    "react": { "version": "18.2.0" }
+  },
   "rules": {
     "unicorn/prefer-node-protocol": 0,
     "no-restricted-globals": 0
