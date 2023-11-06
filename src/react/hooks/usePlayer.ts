@@ -1,14 +1,13 @@
 import { isPlayer } from '@dreamlab.gg/core/entities'
 import type { Player } from '@dreamlab.gg/core/entities'
 import type { EventHandler } from '@dreamlab.gg/core/events'
-import { useCallback, useEffect, useState } from 'https://esm.sh/react@18.2.0'
+import { useCallback, useEffect } from 'https://esm.sh/react@18.2.0'
+import { useForceUpdate } from './useForceUpdate.ts'
 import { useGame } from './useGame.ts'
 
 export const usePlayer = (): Player | undefined => {
   const game = useGame()
-
-  const [, updateState] = useState<unknown>()
-  const forceUpdate = useCallback(() => updateState({}), [])
+  const forceUpdate = useForceUpdate()
 
   type Handler = EventHandler<'onDestroy' | 'onInstantiate'>
   const onEntityChange = useCallback<Handler>(
