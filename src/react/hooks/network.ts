@@ -5,6 +5,9 @@ import type {
 import { useEffect, useMemo } from 'https://esm.sh/react@18.2.0'
 import { useGame } from './useGame.ts'
 
+/**
+ * Get a reference to the current Client Networking system, if it has been registered with the game
+ */
 export const useNetwork = (): NetClient | undefined => {
   const game = useGame()
   return useMemo(() => game.client.network, [game.client.network])

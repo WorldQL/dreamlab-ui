@@ -5,6 +5,11 @@ import { useCallback, useEffect } from 'https://esm.sh/react@18.2.0'
 import { useForceUpdate } from './useForceUpdate.ts'
 import { useGame } from './useGame.ts'
 
+/**
+ * Get a reference to the current Player entity
+ *
+ * Tracks entity instantiate / destroy and will trigger a re-render if the player is created or destroyed
+ */
 export const usePlayer = (): Player | undefined => {
   const game = useGame()
   const forceUpdate = useForceUpdate()

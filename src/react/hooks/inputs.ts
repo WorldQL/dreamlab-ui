@@ -7,6 +7,12 @@ type KeyOrInput = LiteralUnion<InputCode, string>
 export type InputHandler = (pressed: boolean) => void
 export type InputPressedHandler = () => void
 
+/**
+ * Trigger a callback when an input is pressed / unpressed
+ *
+ * @param input - Key Code or Mapped Input
+ * @param handler - Callback function
+ */
 export const useInput = (
   input: KeyOrInput,
   handler: (pressed: boolean) => void,
@@ -22,7 +28,16 @@ export const useInput = (
   }, [game, input, handler])
 }
 
-export const useInputPressed = (input: KeyOrInput, handler: () => void): void => {
+/**
+ * Trigger a callback *only* when an input is **pressed**
+ *
+ * @param input - Key Code or Mapped Input
+ * @param handler - Callback function
+ */
+export const useInputPressed = (
+  input: KeyOrInput,
+  handler: () => void,
+): void => {
   const game = useGame()
 
   const fn = useCallback(
