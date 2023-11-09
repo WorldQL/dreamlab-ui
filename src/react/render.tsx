@@ -15,15 +15,17 @@ export const renderUI = (
   game: Game<false>,
   ui: ReactNode,
   container?: HTMLDivElement,
-): (() => void) => {
+): { unmount(): void } => {
   const div = container ?? document.createElement('div')
   game.client.ui.add(div)
 
   const root = createRoot(div)
   root.render(<GameContext.Provider value={game}>{ui}</GameContext.Provider>)
 
-  return () => {
-    game.client.ui.remove(div)
-    root.unmount()
+  return {
+    unmount: () => {
+      game.client.ui.remove(div)
+      root.unmount()
+    },
   }
 }
