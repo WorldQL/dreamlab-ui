@@ -47,6 +47,7 @@
     "fmt": "npm run format",
     "test": "npm run check && npm run lint",
     "prepack": "npm run test && npm run build",
+    "preversion": "npm run test",
     "postversion": "git push --follow-tags"
   },
   "repository": {
