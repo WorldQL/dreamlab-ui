@@ -14,6 +14,11 @@ interface RenderOptions {
    * Enable React Strict Mode, defaults to `true`
    */
   strict?: boolean
+
+  /**
+   * Make the UI div interactable on mount, defaults to `true`
+   */
+  interactable?: boolean
 }
 
 /**
@@ -30,7 +35,9 @@ export const renderUI = (
   options: RenderOptions = {},
 ): { readonly container: HTMLDivElement; unmount(this: void): void } => {
   const div = options.container ?? document.createElement('div')
+  const interactable = options.interactable ?? true
   game.client.ui.add(div)
+  if (interactable) game.client.ui.makeInteractable(div)
 
   const strict = options.strict ?? true
   const root = createRoot(div)
