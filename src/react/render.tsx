@@ -28,7 +28,7 @@ export const renderUI = (
   game: Game<false>,
   ui: ReactNode,
   options: RenderOptions = {},
-): { readonly container: HTMLDivElement; unmount(): void } => {
+): { readonly container: HTMLDivElement; unmount(this: void): void } => {
   const div = options.container ?? document.createElement('div')
   game.client.ui.add(div)
 
