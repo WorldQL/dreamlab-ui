@@ -16,7 +16,7 @@ interface RenderOptions {
   strict?: boolean
 
   /**
-   * Make the UI div interactable on mount, defaults to `true`
+   * Make the UI div interactable on mount, defaults to `false`
    */
   interactable?: boolean
 }
@@ -51,7 +51,7 @@ export const renderUI = (
   ui: ReactNode,
   options: RenderOptions = {},
 ): UI => {
-  const interactable = options.interactable ?? true
+  const interactable = options.interactable ?? false
   const dom = game.client.ui.create(interactable)
 
   const div = options.container ?? document.createElement('div')
