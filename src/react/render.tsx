@@ -6,7 +6,7 @@ import { GameContext } from '~/react/context.ts'
 
 interface RenderOptions {
   /**
-   * Container to mount in, defaults to the parent of the game canvas
+   * Container to mount in, will create one if unset
    */
   container?: HTMLDivElement
 
@@ -21,6 +21,23 @@ interface RenderOptions {
   interactable?: boolean
 }
 
+interface UI {
+  /**
+   * UI Shadow Root
+   */
+  readonly root: ShadowRoot
+
+  /**
+   * React Root
+   */
+  readonly container: HTMLDivElement
+
+  /**
+   * Unmount the React tree from the UI
+   */
+  unmount(this: void): void
+}
+
 /**
  * Render a React tree as Dreamlab UI
  *
@@ -33,11 +50,12 @@ export const renderUI = (
   game: Game<false>,
   ui: ReactNode,
   options: RenderOptions = {},
-): { readonly container: HTMLDivElement; unmount(this: void): void } => {
-  const div = options.container ?? document.createElement('div')
+): UI => {
   const interactable = options.interactable ?? true
-  game.client.ui.add(div)
-  if (interactable) game.client.ui.makeInteractable(div)
+  const dom = game.client.ui.create(interactable)
+
+  const div = options.container ?? document.createElement('div')
+  dom.append(div)
 
   const strict = options.strict ?? true
   const root = createRoot(div)
@@ -45,14 +63,18 @@ export const renderUI = (
   const tree = <GameContext.Provider value={game}>{ui}</GameContext.Provider>
   root.render(strict ? <StrictMode>{tree}</StrictMode> : tree)
 
-  return {
+  return Object.freeze({
+    get root(): ShadowRoot {
+      return dom
+    },
+
     get container(): HTMLDivElement {
       return div
     },
 
     unmount: () => {
-      game.client.ui.remove(div)
+      game.client.ui.remove(dom)
       root.unmount()
     },
-  }
+  })
 }
