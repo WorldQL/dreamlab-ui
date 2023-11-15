@@ -4,10 +4,13 @@ import { useCallback, useEffect } from 'https://esm.sh/react@18.2.0'
 import { useForceUpdate } from './useForceUpdate.ts'
 import { useGame } from './useGame.ts'
 
-export const useRegistered = (): readonly (readonly [
+export type RegisteredSpawnable = readonly [
   name: string,
   fn: BareSpawnableFunction,
-])[] => {
+]
+
+export type RegisteredSpawnables = readonly RegisteredSpawnable[]
+export const useRegisteredSpawnables = (): RegisteredSpawnables => {
   const game = useGame()
   const forceUpdate = useForceUpdate()
 
