@@ -1,4 +1,9 @@
-import type { BareSpawnableFunction } from '@dreamlab.gg/core'
+import { isSpawnableEntity } from '@dreamlab.gg/core'
+import type {
+  BareSpawnableFunction,
+  Entity,
+  SpawnableEntity,
+} from '@dreamlab.gg/core'
 import type { EventHandler } from '@dreamlab.gg/core/events'
 import { useCallback, useEffect } from 'https://esm.sh/react@18.2.0'
 import { useForceUpdate } from './useForceUpdate.ts'
@@ -10,6 +15,10 @@ export type RegisteredSpawnable = readonly [
 ]
 
 export type RegisteredSpawnables = readonly RegisteredSpawnable[]
+
+/**
+ * List all registered spawnable entity functions
+ */
 export const useRegisteredSpawnables = (): RegisteredSpawnables => {
   const game = useGame()
   const forceUpdate = useForceUpdate()
@@ -26,4 +35,32 @@ export const useRegisteredSpawnables = (): RegisteredSpawnables => {
   }, [game.events.common, onRegister])
 
   return game.registered
+}
+
+/**
+ * List all entities
+ */
+export const useEntities = (): readonly Entity[] => {
+  const game = useGame()
+  const forceUpdate = useForceUpdate()
+
+  useEffect(() => {
+    game.events.common.addListener('onInstantiate', forceUpdate)
+    game.events.common.addListener('onDestroy', forceUpdate)
+
+    return () => {
+      game.events.common.removeListener('onInstantiate', forceUpdate)
+      game.events.common.removeListener('onDestroy', forceUpdate)
+    }
+  }, [game.events.common, forceUpdate])
+
+  return game.entities
+}
+
+/**
+ * List all spawnable entities
+ */
+export const useSpawnableEntities = (): readonly SpawnableEntity[] => {
+  const entities = useEntities()
+  return entities.filter(isSpawnableEntity)
 }
