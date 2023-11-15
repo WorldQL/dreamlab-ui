@@ -14,6 +14,7 @@ export default defineConfig(async options => {
     target: 'es2021',
     format: 'esm',
     platform: 'neutral',
+    tsconfig: options.watch ? './tsconfig.dev.json' : './tsconfig.json',
 
     clean: true,
     minify: !options.watch,
