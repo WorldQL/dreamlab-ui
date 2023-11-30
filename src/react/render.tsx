@@ -1,7 +1,7 @@
 import type { Game } from '@dreamlab.gg/core'
-import { createRoot } from 'https://esm.sh/react-dom@18.2.0/client'
-import { StrictMode } from 'https://esm.sh/react@18.2.0'
-import type { ReactNode } from 'https://esm.sh/react@18.2.0'
+import { createRoot } from 'https://esm.sh/v136/react-dom@18.2.0/client'
+import { StrictMode } from 'https://esm.sh/v136/react@18.2.0'
+import type { ReactNode } from 'https://esm.sh/v136/react@18.2.0'
 import { GameContext } from '~/react/context.ts'
 
 interface RenderOptions {

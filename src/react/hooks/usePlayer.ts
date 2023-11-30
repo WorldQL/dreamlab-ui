@@ -1,7 +1,7 @@
 import { isPlayer } from '@dreamlab.gg/core/entities'
 import type { Player } from '@dreamlab.gg/core/entities'
 import type { EventHandler } from '@dreamlab.gg/core/events'
-import { useCallback, useEffect } from 'https://esm.sh/react@18.2.0'
+import { useCallback, useEffect } from 'https://esm.sh/v136/react@18.2.0'
 import { useForceUpdate } from './useForceUpdate.ts'
 import { useGame } from './useGame.ts'
 
