@@ -2,10 +2,28 @@ import type {
   ClientEvents,
   CommonEvents,
   Event,
+  EventEmitter,
   EventHandler,
 } from '@dreamlab.gg/core/events'
 import { useEffect } from 'https://esm.sh/v136/react@18.2.0'
 import { useGame } from './useGame.ts'
+
+export const useEventListener = <
+  EventTypes extends EventEmitter.ValidEventTypes,
+  T extends EventEmitter.EventNames<EventTypes>,
+>(
+  emitter: EventEmitter<EventTypes>,
+  event: T,
+  handler: EventEmitter.EventListener<EventTypes, T>,
+): void => {
+  useEffect(() => {
+    emitter.addListener(event, handler)
+
+    return () => {
+      emitter.removeListener(event, handler)
+    }
+  }, [emitter, event, handler])
+}
 
 export const useClientEventListener = <T extends Event<ClientEvents>>(
   event: T,
