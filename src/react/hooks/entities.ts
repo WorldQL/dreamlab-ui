@@ -5,12 +5,10 @@ import { useCallback, useEffect } from 'https://esm.sh/v136/react@18.2.0'
 import { useForceUpdate } from './useForceUpdate.ts'
 import { useGame } from './useGame.ts'
 
-export type RegisteredSpawnables = Game<boolean>['registered']
-
 /**
  * List all registered spawnable entity functions
  */
-export const useRegisteredSpawnables = (): RegisteredSpawnables => {
+export const useRegisteredSpawnables = (): Game<boolean>['registered'] => {
   const game = useGame()
   const forceUpdate = useForceUpdate()
 
