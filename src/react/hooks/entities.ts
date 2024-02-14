@@ -1,20 +1,11 @@
 import { isSpawnableEntity } from '@dreamlab.gg/core'
-import type {
-  BareSpawnableFunction,
-  Entity,
-  SpawnableEntity,
-} from '@dreamlab.gg/core'
+import type { Entity, Game, SpawnableEntity } from '@dreamlab.gg/core'
 import type { EventHandler } from '@dreamlab.gg/core/events'
 import { useCallback, useEffect } from 'https://esm.sh/v136/react@18.2.0'
 import { useForceUpdate } from './useForceUpdate.ts'
 import { useGame } from './useGame.ts'
 
-export type RegisteredSpawnable = readonly [
-  name: string,
-  fn: BareSpawnableFunction,
-]
-
-export type RegisteredSpawnables = readonly RegisteredSpawnable[]
+export type RegisteredSpawnables = Game<boolean>['registered']
 
 /**
  * List all registered spawnable entity functions
