@@ -15,29 +15,45 @@ import {
  * Return a reference to a {@link Transform} that will automatically trigger React re-renders
  *
  * @param transform - Transform
+ * @param onChange - Optional handler that will trigger when any value changes
  */
-export const useTransform = (transform: Transform): Transform => {
+export const useTransform = (
+  transform: Transform,
+  onChange?: () => void,
+): Transform => {
   const [_x, setX] = useState<number>()
   const [_y, setY] = useState<number>()
   const [_r, setRotation] = useState<number>()
   const [_z, setZIndex] = useState<number>()
 
+  const triggerChange = useCallback(() => {
+    if (typeof onChange === 'function') onChange()
+  }, [onChange])
+
   const onPositionChanged = useCallback<PositionListener>(
     (component, value, _delta) => {
       if (component === 'x') setX(value)
       else if (component === 'y') setY(value)
+
+      triggerChange()
     },
-    [setX, setY],
+    [setX, setY, triggerChange],
   )
 
   const onRotationChanged = useCallback<RotationListener>(
-    (value, _delta) => setRotation(value),
-    [setRotation],
+    (value, _delta) => {
+      setRotation(value)
+      triggerChange()
+    },
+    [setRotation, triggerChange],
   )
 
   const onZIndexChanged = useCallback<ZIndexListener>(
-    value => setZIndex(value),
-    [setZIndex],
+    value => {
+      setZIndex(value)
+      triggerChange()
+    },
+    [setZIndex, triggerChange],
   )
 
   useEffect(() => {
