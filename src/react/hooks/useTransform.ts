@@ -19,7 +19,7 @@ import {
  */
 export const useTransform = (
   transform: Transform,
-  onChange?: () => void,
+  onChange?: (transform: Transform) => void,
 ): Transform => {
   const [_x, setX] = useState<number>()
   const [_y, setY] = useState<number>()
@@ -27,8 +27,8 @@ export const useTransform = (
   const [_z, setZIndex] = useState<number>()
 
   const triggerChange = useCallback(() => {
-    if (typeof onChange === 'function') onChange()
-  }, [onChange])
+    if (typeof onChange === 'function') onChange(transform)
+  }, [transform, onChange])
 
   const onPositionChanged = useCallback<PositionListener>(
     (component, value, _delta) => {
