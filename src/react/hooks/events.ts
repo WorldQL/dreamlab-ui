@@ -5,7 +5,7 @@ import type {
   EventEmitter,
   EventHandler,
 } from '@dreamlab.gg/core/events'
-import { useEffect } from 'https://esm.sh/v136/react@18.2.0'
+import { useEffect } from 'https://esm.sh/react@18.2.0'
 import { useGame } from './useGame.ts'
 
 export const useEventListener = <

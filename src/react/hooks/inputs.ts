@@ -1,5 +1,5 @@
 import type { InputCode, InputManager } from '@dreamlab.gg/core/input'
-import { useCallback, useEffect } from 'https://esm.sh/v136/react@18.2.0'
+import { useCallback, useEffect } from 'https://esm.sh/react@18.2.0'
 import type { LiteralUnion } from 'type-fest'
 import { useForceUpdate } from './useForceUpdate.ts'
 import { useGame } from './useGame.ts'

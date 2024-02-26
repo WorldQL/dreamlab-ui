@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'https://esm.sh/v136/react@18.2.0'
+import { useCallback, useState } from 'https://esm.sh/react@18.2.0'
 
 /**
  * Allows you to force a re-render

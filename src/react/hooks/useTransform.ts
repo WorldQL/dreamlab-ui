@@ -5,11 +5,7 @@ import type {
   Transform,
   ZIndexListener,
 } from '@dreamlab.gg/core/math'
-import {
-  useCallback,
-  useEffect,
-  useState,
-} from 'https://esm.sh/v136/react@18.2.0'
+import { useCallback, useEffect, useState } from 'https://esm.sh/react@18.2.0'
 
 /**
  * Return a reference to a {@link Transform} that will automatically trigger React re-renders

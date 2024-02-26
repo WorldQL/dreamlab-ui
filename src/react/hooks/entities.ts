@@ -1,7 +1,7 @@
 import { isSpawnableEntity } from '@dreamlab.gg/core'
 import type { Entity, Game, SpawnableEntity } from '@dreamlab.gg/core'
 import type { EventHandler } from '@dreamlab.gg/core/events'
-import { useCallback, useEffect } from 'https://esm.sh/v136/react@18.2.0'
+import { useCallback, useEffect } from 'https://esm.sh/react@18.2.0'
 import { useForceUpdate } from './useForceUpdate.ts'
 import { useGame } from './useGame.ts'
 
